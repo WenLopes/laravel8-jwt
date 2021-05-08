@@ -11,7 +11,9 @@ class AuthExceptionService
 
     CONST EXCEPTIONS = [
         'Tymon\JWTAuth\Exceptions\TokenExpiredException' => 'App\Services\Auth\Exception\Types\TokenExpiredException',
-        // Outras exceptions podem ser mapeadas aqui...    
+        'Tymon\JWTAuth\Exceptions\TokenInvalidException' => 'App\Services\Auth\Exception\Types\TokenInvalidException',
+        'Tymon\JWTAuth\Exceptions\TokenBlacklistedException' => 'App\Services\Auth\Exception\Types\TokenBlackListException',
+        'Tymon\JWTAuth\Exceptions\JWTException' => 'App\Services\Auth\Exception\Types\JWTException'    
     ];
 
     protected $exception;
