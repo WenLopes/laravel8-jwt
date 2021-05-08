@@ -18,7 +18,7 @@ use App\Http\Controllers\AuthController;
 
 Route::post('auth/login', [AuthController::class, 'login'])->name('auth.login');
 
-Route::group([ 'middleware' => 'api', 'prefix' => 'auth' ], function () {
+Route::group([ 'middleware' => 'auth-jwt', 'prefix' => 'auth' ], function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('refresh', [AuthController::class, 'refresh'])->name('refresh');
     Route::post('me', [AuthController::class, 'me'])->name('me');
