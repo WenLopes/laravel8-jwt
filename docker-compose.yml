@@ -1,0 +1,55 @@
+version: "3.1"
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  base_mysql_data:
+    driver: local
+
+services:
+
+    mysql_base:
+      image: mysql:5.7
+      container_name: mysql_base
+      working_dir: /var/lib/mysql
+      networks:
+        static-network:
+          ipv4_address: 172.20.130.10
+      volumes:
+        - base_mysql_data:/var/lib/mysql
+      environment:
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      ports:
+        - "${MYSQL_PORT}:3306"
+
+    nginx_base:
+      image: nginx
+      container_name: nginx_base
+      working_dir: /laravel8-jwt
+      volumes:
+        - ${CODE_PATH}:/laravel8-jwt
+        - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+        - ./docker/nginx/api.conf:/etc/nginx/sites-enabled/api.conf
+      extra_hosts:
+        - "php7_base:172.20.128.12" 
+      ports:
+        - "${WEBSERVER_PORT}:80"
+      networks:
+        static-network:
+          ipv4_address: 172.20.128.11
+
+    php7_base:
+      build: ./docker/php
+      container_name: php7_base
+      volumes:
+        - ${CODE_PATH}:/laravel8-jwt
+        - ./docker/php/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
+      networks:
+        static-network:
+          ipv4_address: 172.20.128.12
