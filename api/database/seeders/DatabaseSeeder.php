@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\Employee::create([
             'name' => 'Usuário de teste',
-            'email' => 'usuario@teste.com.br',
-            'password' => bcrypt('senha123'),
+            'email' => config('env.API_USER_EMAIL'),
+            'password' => bcrypt( config('env.API_USER_PASSWORD') ),
             'job_title' => 'Gerente administrativo'
         ]);
     }
