@@ -9,8 +9,22 @@ class TokenExpiredException implements IExceptionResponse
 {
     public function response()
     {
-        return response()->json([
-            'message' => 'Seu token está expirado.'
-        ], 401);
+        try {
+
+            $refreshed = JWTAuth::refresh(JWTAuth::getToken());
+    
+            return response()->json([
+                'message' => 'Token expirado',
+                'refreshed_token' => $refreshed
+            ], 401);
+
+        } catch (\Exception $e) {
+
+            if( $e instanceof \Tymon\JWTAuth\Exceptions\TokenBlacklistedException ){
+                return (new TokenBlackListException)->response();
+            }
+
+            return (new GenericException)->response();
+        }
     }
 }
