@@ -1,3 +1,4 @@
+
 # Laravel 8 - JWT
 
 Api criada em Laravel na versão 8, Docker para infraestrutura e MySql como banco de dados, utilizando a biblioteca **tymon/jwt-auth**.
@@ -99,3 +100,13 @@ Na **raiz do projeto**, execute o comando:
 ```bash
 docker-compose exec php7_base vendor/bin/phpunit
 ```
+
+## Documentation
+
+* [Artigo com a explicação do passo a passo do desenvolvimento (Em breve)](https://medium.com/@wenlopes)
+
+* [tymon/jwt-auth](https://jwt-auth.readthedocs.io/en/develop/laravel-installation/)
+
+* [Laravel 8](https://laravel.com/docs/8.x/releases)
+
+* [Docker](https://www.docker.com/)
