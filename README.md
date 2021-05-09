@@ -101,7 +101,7 @@ Na **raiz do projeto**, execute o comando:
 docker-compose exec php7_base vendor/bin/phpunit
 ```
 
-## Documentation
+## Documentação
 
 * [Artigo com a explicação do passo a passo do desenvolvimento (Em breve)](https://medium.com/@wenlopes)
 
