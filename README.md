@@ -9,7 +9,7 @@ Nesse projeto foi criada uma Model customizada para autenticação (no padrão d
 ### 1. Clonar o projeto
 
 ```bash
-git clone https://github.com/WenLopes/docker-react-laravel.git
+git clone https://github.com/WenLopes/laravel8-jwt
 ```
 
 
